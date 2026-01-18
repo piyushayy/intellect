@@ -17,9 +17,9 @@ export default function Home() {
           <div className="absolute top-20 left-10 w-24 h-24 bg-yellow-100 rounded-full blur-xl opacity-60 animate-pulse" />
           <div className="absolute bottom-20 right-10 w-32 h-32 bg-green-100 rounded-full blur-xl opacity-60 animate-pulse delay-700" />
 
-          <h1 className="font-serif text-6xl md:text-8xl tracking-tight text-slate-900 mb-8 max-w-4xl leading-[0.9] lg:text-[7rem]">
-            The smartest way to <br />
-            <span className="italic text-indigo-600 font-light">master</span> your future.
+          <h1 className="font-serif text-5xl md:text-7xl tracking-tight text-slate-900 mb-8 max-w-4xl leading-tight">
+            Practice smarter. <br />
+            <span className="italic text-indigo-600 font-light">Reach a better college.</span>
           </h1>
 
           <p className="text-xl text-slate-600 max-w-2xl mb-10 leading-relaxed font-medium">

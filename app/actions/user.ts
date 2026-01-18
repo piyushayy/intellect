@@ -71,3 +71,29 @@ export async function getUserStats(userId: string) {
         xp: gameStats?.total_xp || 0
     }
 }
+
+export async function getLeaderboard() {
+    const { data } = await supabase
+        .from('user_gamification')
+        .select('total_xp, user_id')
+        .order('total_xp', { ascending: false })
+        .limit(10);
+
+    if (!data) return [];
+
+    const userIds = data.map(d => d.user_id);
+    const { data: profiles } = await supabase
+        .from('users')
+        .select('id, full_name')
+        .in('id', userIds);
+
+    return data.map((entry, index) => {
+        const profile = profiles?.find(p => p.id === entry.user_id);
+        return {
+            rank: index + 1,
+            name: profile?.full_name || `Learner ${entry.user_id.slice(0, 4)}`,
+            xp: entry.total_xp,
+            id: entry.user_id
+        };
+    });
+}
