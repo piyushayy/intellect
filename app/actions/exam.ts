@@ -57,15 +57,38 @@ export async function submitExam(testId: string, userId: string, answers: Record
     const total = linkData.length;
 
     // Calculate Score
+    // Calculate Score & Prepare Progress Updates
+    const progressUpdates: any[] = [];
+    const timestamp = new Date().toISOString();
+
     linkData.forEach((item: any) => {
         const qId = item.question.id;
         const correct = item.question.correct_option;
         const userAns = answers[qId];
+        const isCorrect = userAns === correct;
 
         if (userAns === correct) {
             score += 1;
         }
+
+        // Only log attempts if the user actually answered
+        if (userAns) {
+            progressUpdates.push({
+                user_id: userId,
+                question_id: qId,
+                selected_option: userAns,
+                is_correct: isCorrect,
+                attempted_at: timestamp
+            });
+        }
     });
+
+    // Bulk upsert into user_progress
+    if (progressUpdates.length > 0) {
+        await supabase
+            .from('user_progress')
+            .upsert(progressUpdates, { onConflict: 'user_id, question_id' });
+    }
 
     // 3. Save Attempt
     const percentage = Math.round((score / total) * 100);

@@ -1,7 +1,7 @@
 import { getLeaderboard, getUserStats } from "@/app/actions/user";
-import { Leaderboard } from "@/components/gamification/Leaderboard";
 import { DailyDrop } from "@/components/gamification/DailyDrop";
-import { Badges } from "@/components/gamification/Badges";
+import { PersonalProgress } from "@/components/dashboard/PersonalProgress";
+import { TrophyCabinet } from "@/components/gamification/Trophies";
 
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
@@ -32,7 +32,6 @@ export default async function DashboardPage() {
     }
 
     const stats = await getUserStats(user.id);
-    const leaderboard = await getLeaderboard();
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -63,9 +62,9 @@ export default async function DashboardPage() {
                                     <Trophy className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-slate-500">Global Rank</p>
-                                    <p className="text-2xl font-bold text-slate-900">#{leaderboard.find(l => l.id === user.id)?.rank || '-'}</p>
-                                    <p className="text-xs text-slate-400">Top 10%</p>
+                                    <p className="text-sm font-medium text-slate-500">Accuracy</p>
+                                    <p className="text-2xl font-bold text-slate-900"><CountUp end={stats?.accuracy || 0} />%</p>
+                                    <p className="text-xs text-slate-400">{stats?.correct || 0} correct</p>
                                 </div>
                             </div>
                         </Reveal>
@@ -88,7 +87,7 @@ export default async function DashboardPage() {
                 {/* Main Grid: Content + Leaderboard + Quick Actions */}
                 <div className="grid lg:grid-cols-4 gap-8">
 
-                    {/* Left Column: Recommended & Badges */}
+                    {/* Left Column: Recommended & Trophies */}
                     <section className="lg:col-span-3 space-y-8">
                         <Reveal delay={0.4}>
                             <div className="flex items-center justify-between mb-4">
@@ -120,14 +119,14 @@ export default async function DashboardPage() {
                         </Reveal>
 
                         <Reveal delay={0.5}>
-                            <Badges xp={stats?.xp || 0} />
+                            <TrophyCabinet />
                         </Reveal>
                     </section>
 
-                    {/* Right Column: Leaderboard & Quick Actions */}
+                    {/* Right Column: Personal Progress & Quick Actions */}
                     <aside className="space-y-6">
                         <Reveal delay={0.6}>
-                            <Leaderboard data={leaderboard} currentUserId={user.id} />
+                            <PersonalProgress />
                         </Reveal>
 
                         <Reveal delay={0.7}>
