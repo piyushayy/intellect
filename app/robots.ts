@@ -5,7 +5,14 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: ['/admin/', '/api/'],
+            disallow: [
+                '/admin/',
+                '/api/',
+                '/dashboard/',
+                '/mistakes/', // Personal content
+                '/account/',
+                '/_next/'
+            ],
         },
         sitemap: 'https://intellect.education/sitemap.xml',
     }
