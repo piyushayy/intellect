@@ -134,3 +134,29 @@ export async function bulkImportQuestions(questions: any[]) {
     revalidatePath('/admin/questions');
     return { success: true, count: validQuestions.length, errors };
 }
+
+export async function getAdminStats() {
+    const { count: questionCount } = await supabase.from('questions').select('*', { count: 'exact', head: true });
+    const { count: userCount } = await supabase.from('users').select('*', { count: 'exact', head: true });
+    const { count: attemptCount } = await supabase.from('test_attempts').select('*', { count: 'exact', head: true });
+
+    // Recent questions
+    const { data: recentQuestions } = await supabase
+        .from('questions')
+        .select(`
+            id, 
+            question_text, 
+            created_at, 
+            subjects (name), 
+            topics (name)
+        `)
+        .order('created_at', { ascending: false })
+        .limit(5);
+
+    return {
+        questionCount: questionCount || 0,
+        userCount: userCount || 0,
+        attemptCount: attemptCount || 0,
+        recentQuestions: recentQuestions || []
+    };
+}
