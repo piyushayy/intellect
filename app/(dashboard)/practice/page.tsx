@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Book, Calculator, Globe, Quote, ChevronRight, Layers, Atom, FlaskConical, Dna, TrendingUp } from "lucide-react";
+import { Book, Calculator, Globe, Quote, ChevronRight, Layers, Atom, FlaskConical, Dna, TrendingUp, Users, Brain } from "lucide-react";
 import { SUBJECT_DATA } from "@/lib/subjects"; // We will use static config for better control over UI structure
 
 const ICON_MAP: Record<string, any> = {
@@ -10,7 +10,9 @@ const ICON_MAP: Record<string, any> = {
     'atom': Atom,
     'flask': FlaskConical,
     'dna': Dna,
-    'trending-up': TrendingUp
+    'trending-up': TrendingUp,
+    'users': Users,
+    'brain': Brain
 };
 
 export default function PracticeHubPage() {
@@ -47,11 +49,14 @@ export default function PracticeHubPage() {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <SubjectCard subject={SUBJECT_DATA['math']} />
-                    <SubjectCard subject={SUBJECT_DATA['physics']} />
-                    <SubjectCard subject={SUBJECT_DATA['chemistry']} />
-                    <SubjectCard subject={SUBJECT_DATA['biology']} />
+                    <SubjectCard subject={SUBJECT_DATA['accountancy']} />
+                    <SubjectCard subject={SUBJECT_DATA['business_studies']} />
                     <SubjectCard subject={SUBJECT_DATA['economics']} />
+                    <SubjectCard subject={SUBJECT_DATA['math']} />
+                    <SubjectCard subject={SUBJECT_DATA['political_science']} />
+                    <SubjectCard subject={SUBJECT_DATA['history']} />
+                    <SubjectCard subject={SUBJECT_DATA['psychology']} />
+                    <SubjectCard subject={SUBJECT_DATA['sociology']} />
                 </div>
             </section>
 

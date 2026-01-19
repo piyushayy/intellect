@@ -12,54 +12,30 @@ export const SUBJECT_DATA = {
             { name: "Verbal Ability", slug: "verbal-ability" }
         ]
     },
-    physics: {
-        name: "Physics",
+    accountancy: {
+        name: "Accountancy",
         description: "Domain Subject",
-        slug: "physics",
-        icon: "atom",
+        slug: "accountancy",
+        icon: "calculator",
         color: "violet",
         sections: [
-            { name: "Mechanics", slug: "mechanics" },
-            { name: "Thermodynamics", slug: "thermodynamics" },
-            { name: "Electrostatics", slug: "electrostatics" },
-            { name: "Optics", slug: "optics" }
+            { name: "Accounting for NPO", slug: "npo" },
+            { name: "Partnership", slug: "partnership" },
+            { name: "Company Accounts", slug: "company-accounts" },
+            { name: "Financial Statements", slug: "financial-statements" }
         ]
     },
-    chemistry: {
-        name: "Chemistry",
+    business_studies: {
+        name: "Business Studies",
         description: "Domain Subject",
-        slug: "chemistry",
-        icon: "flask",
+        slug: "business-studies",
+        icon: "trending-up",
         color: "teal",
         sections: [
-            { name: "Physical Chemistry", slug: "physical-chemistry" },
-            { name: "Organic Chemistry", slug: "organic-chemistry" },
-            { name: "Inorganic Chemistry", slug: "inorganic-chemistry" }
-        ]
-    },
-    biology: {
-        name: "Biology",
-        description: "Domain Subject",
-        slug: "biology",
-        icon: "dna",
-        color: "emerald",
-        sections: [
-            { name: "Genetics", slug: "genetics" },
-            { name: "Ecology", slug: "ecology" },
-            { name: "Human Physiology", slug: "human-physiology" }
-        ]
-    },
-    math: {
-        name: "Mathematics",
-        description: "Domain Subject",
-        slug: "math",
-        icon: "calculator",
-        color: "blue",
-        sections: [
-            { name: "Calculus", slug: "calculus" },
-            { name: "Algebra", slug: "algebra" },
-            { name: "Probability", slug: "probability" },
-            { name: "Vectors", slug: "vectors" }
+            { name: "Principles of Management", slug: "management-principles" },
+            { name: "Business Environment", slug: "business-environment" },
+            { name: "Marketing Management", slug: "marketing" },
+            { name: "Financial Markets", slug: "financial-markets" }
         ]
     },
     economics: {
@@ -71,7 +47,69 @@ export const SUBJECT_DATA = {
         sections: [
             { name: "Microeconomics", slug: "microeconomics" },
             { name: "Macroeconomics", slug: "macroeconomics" },
-            { name: "Indian Statistics", slug: "indian-statistics" }
+            { name: "Indian Economic Development", slug: "indian-economy" }
+        ]
+    },
+    political_science: {
+        name: "Political Science",
+        description: "Domain Subject",
+        slug: "political-science",
+        icon: "globe",
+        color: "rose",
+        sections: [
+            { name: "Cold War Era", slug: "cold-war" },
+            { name: "End of Bipolarity", slug: "bipolarity" },
+            { name: "US Hegemony", slug: "us-hegemony" },
+            { name: "Politics in India", slug: "indian-politics" }
+        ]
+    },
+    history: {
+        name: "History",
+        description: "Domain Subject",
+        slug: "history",
+        icon: "book",
+        color: "red",
+        sections: [
+            { name: "Ancient India", slug: "ancient-india" },
+            { name: "Medieval India", slug: "medieval-india" },
+            { name: "Modern India", slug: "modern-india" }
+        ]
+    },
+    psychology: {
+        name: "Psychology",
+        description: "Domain Subject",
+        slug: "psychology",
+        icon: "brain",
+        color: "indigo",
+        sections: [
+            { name: "Variations in Attributes", slug: "attributes" },
+            { name: "Self and Personality", slug: "personality" },
+            { name: "Life Challenges", slug: "life-challenges" }
+        ]
+    },
+    sociology: {
+        name: "Sociology",
+        description: "Domain Subject",
+        slug: "sociology",
+        icon: "users",
+        color: "orange",
+        sections: [
+            { name: "Indian Society", slug: "indian-society" },
+            { name: "Social Institutions", slug: "social-institutions" },
+            { name: "Social Change", slug: "social-change" }
+        ]
+    },
+    math: {
+        name: "Appl. Mathematics",
+        description: "Domain Subject",
+        slug: "math",
+        icon: "calculator",
+        color: "blue",
+        sections: [
+            { name: "Calculus", slug: "calculus" },
+            { name: "Algebra", slug: "algebra" },
+            { name: "Probability", slug: "probability" },
+            { name: "Financial Mathematics", slug: "financial-math" }
         ]
     },
     "general-test": {
