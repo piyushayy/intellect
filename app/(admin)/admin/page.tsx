@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Plus, Upload } from "lucide-react";
 
@@ -7,9 +8,11 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between mb-8">
                 <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
                 <div className="flex gap-4">
-                    <Button variant="outline">
-                        <Upload className="mr-2 w-4 h-4" /> Bulk Import
-                    </Button>
+                    <Link href="/admin/upload">
+                        <Button variant="outline">
+                            <Upload className="mr-2 w-4 h-4" /> Bulk Import
+                        </Button>
+                    </Link>
                     <Button>
                         <Plus className="mr-2 w-4 h-4" /> Add Question
                     </Button>
