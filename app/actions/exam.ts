@@ -71,13 +71,21 @@ export async function submitExam(testId: string, userId: string, answers: Record
             score += 1;
         }
 
-        // Only log attempts if the user actually answered
+        // Determine status for DB
+        let status = 'incorrect';
+        if (userAns === 'skipped') status = 'skipped';
+        else if (isCorrect) status = 'correct';
+
+        // Only log attempts if the user actually interacted (answered or explicitly skipped)
+        // If userAns is undefined, they just didn't reach it or didn't select anything (treated as not attempted or skipped?)
+        // If we want to track 'unattempted' as skipped for mock tests we can, but usually skip is explicit.
         if (userAns) {
             progressUpdates.push({
                 user_id: userId,
                 question_id: qId,
-                selected_option: userAns,
+                selected_option: userAns === 'skipped' ? null : userAns,
                 is_correct: isCorrect,
+                status: status,
                 attempted_at: timestamp
             });
         }

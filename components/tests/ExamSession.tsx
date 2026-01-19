@@ -119,7 +119,9 @@ export function ExamSession({ test, questions }: ExamSessionProps) {
                 <div className="flex-1 overflow-y-auto p-6">
                     <div className="grid grid-cols-5 gap-3">
                         {questions.map((_, idx) => {
-                            const isAnswered = !!answers[questions[idx].id];
+                            const ansStatus = answers[questions[idx].id]; // 'opt_id' or 'skipped'
+                            const isSkipped = ansStatus === 'skipped';
+                            const isAnswered = ansStatus && !isSkipped;
                             const isCurrent = currentIdx === idx;
 
                             return (
@@ -127,10 +129,11 @@ export function ExamSession({ test, questions }: ExamSessionProps) {
                                     key={idx}
                                     onClick={() => setCurrentIdx(idx)}
                                     className={cn(
-                                        "h-10 w-10 rounded-lg flex items-center justify-center text-sm font-bold transition-all",
-                                        isCurrent ? "bg-indigo-600 text-white shadow-md shadow-indigo-200" :
-                                            isAnswered ? "bg-emerald-100 text-emerald-700 border border-emerald-200" :
-                                                "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
+                                        "h-10 w-10 rounded-lg flex items-center justify-center text-sm font-bold transition-all border",
+                                        isCurrent ? "bg-indigo-600 text-white border-indigo-600" :
+                                            isAnswered ? "bg-emerald-100 text-emerald-700 border-emerald-200" :
+                                                isSkipped ? "bg-slate-100 text-slate-400 border-slate-200" :
+                                                    "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
                                     )}
                                 >
                                     {idx + 1}
@@ -202,23 +205,38 @@ export function ExamSession({ test, questions }: ExamSessionProps) {
                     </div>
 
                     {/* Navigation Footer */}
-                    <div className="flex justify-between items-center mt-8">
+                    <div className="flex justify-between items-center mt-8 pt-6 border-t border-slate-100">
                         <Button
                             variant="ghost"
                             disabled={currentIdx === 0}
                             onClick={() => setCurrentIdx(c => c - 1)}
+                            className="text-slate-500 hover:text-slate-900"
                         >
                             <ChevronLeft className="w-4 h-4 mr-2" /> Previous
                         </Button>
 
-                        <Button
-                            onClick={() => {
-                                if (currentIdx < questions.length - 1) setCurrentIdx(c => c + 1);
-                            }}
-                            disabled={currentIdx === questions.length - 1}
-                        >
-                            Next Question <ChevronRight className="w-4 h-4 ml-2" />
-                        </Button>
+                        <div className="flex gap-3">
+                            <Button
+                                variant="outline"
+                                className="border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-slate-50 min-w-[100px]"
+                                onClick={() => {
+                                    setAnswers(prev => ({ ...prev, [currentQ.id]: 'skipped' }));
+                                    if (currentIdx < questions.length - 1) setCurrentIdx(c => c + 1);
+                                }}
+                            >
+                                <Flag className="w-4 h-4 mr-2" /> Skip
+                            </Button>
+
+                            <Button
+                                className="min-w-[140px]"
+                                onClick={() => {
+                                    if (currentIdx < questions.length - 1) setCurrentIdx(c => c + 1);
+                                }}
+                                disabled={currentIdx === questions.length - 1}
+                            >
+                                Next Question <ChevronRight className="w-4 h-4 ml-2" />
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </main>
