@@ -13,11 +13,21 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const router = useRouter()
+    // For handling search params in client component, we should really use useSearchParams
+    // But since this is specific to Next.js 13+, let's do it right.
+    // However, useRouter updates are simpler for now in small component.
+
+    // We can just grab it from window if we want to avoid extra hook overhead 
+    // or useSearchParams from next/navigation
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
         setError(null)
+
+        // Get 'next' from URL
+        const params = new URLSearchParams(window.location.search);
+        const nextUrl = params.get('next') || '/dashboard';
 
         const { error } = await supabase.auth.signInWithPassword({
             email,
@@ -29,7 +39,7 @@ export default function LoginPage() {
             setLoading(false)
         } else {
             router.refresh()
-            router.push('/dashboard')
+            router.push(nextUrl)
         }
     }
 

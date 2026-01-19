@@ -34,14 +34,20 @@ export async function middleware(request: NextRequest) {
     // and just refreshing session here.
     const { data: { user } } = await supabase.auth.getUser()
 
-    // Example protection logic (optional in middleware, can be done in Layout)
-    if (request.nextUrl.pathname.startsWith('/dashboard') && !user) {
-        return NextResponse.redirect(new URL('/login', request.url))
+    // 1. Protected Routes Guard
+    const protectedPaths = ['/dashboard', '/practice', '/pyq', '/tests', '/mistakes'];
+    const isProtected = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path));
+
+    if (isProtected && !user) {
+        // Redirect to login but keep the intended destination
+        const redirectUrl = new URL('/login', request.url);
+        redirectUrl.searchParams.set('next', request.nextUrl.pathname);
+        return NextResponse.redirect(redirectUrl);
     }
 
-    // Redirect logged in users away from auth pages
+    // 2. Auth Page Redirect (If already logged in)
     if ((request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/signup') && user) {
-        return NextResponse.redirect(new URL('/dashboard', request.url))
+        return NextResponse.redirect(new URL('/dashboard', request.url));
     }
 
     return supabaseResponse
