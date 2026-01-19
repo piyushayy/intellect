@@ -280,7 +280,6 @@ export default function Home() {
               <h4 className="text-slate-500 font-medium mb-2">Product</h4>
               <Link href="/practice" className="text-slate-300 hover:text-white transition-colors">Courses</Link>
               <Link href="/pricing" className="text-slate-300 hover:text-white transition-colors">Pricing</Link>
-              <Link href="/gift" className="text-slate-300 hover:text-white transition-colors">Gift Intellect</Link>
               <Link href="/help" className="text-slate-300 hover:text-white transition-colors">Help</Link>
             </div>
 
@@ -288,14 +287,11 @@ export default function Home() {
               <h4 className="text-slate-500 font-medium mb-2">Company</h4>
               <Link href="/about" className="text-slate-300 hover:text-white transition-colors">About us</Link>
               <Link href="/careers" className="text-slate-300 hover:text-white transition-colors">Careers</Link>
-              <Link href="/educators" className="text-slate-300 hover:text-white transition-colors">Educators</Link>
-              <Link href="/press" className="text-slate-300 hover:text-white transition-colors">Press</Link>
             </div>
 
             <div className="flex flex-col gap-4">
               <h4 className="text-slate-500 font-medium mb-2">Resources</h4>
               <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">Blog</Link>
-              <Link href="/science" className="text-slate-300 hover:text-white transition-colors">Science of Learning</Link>
               <Link href="/success-stories" className="text-slate-300 hover:text-white transition-colors">Success Stories</Link>
             </div>
           </div>
