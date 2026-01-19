@@ -111,7 +111,10 @@ export default function LoginPage() {
 
                 <p className="text-center text-sm text-slate-600">
                     Don't have an account?{' '}
-                    <Link href="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    <Link
+                        href={`/signup${typeof window !== 'undefined' ? window.location.search : ''}`}
+                        className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    >
                         Create free account
                     </Link>
                 </p>

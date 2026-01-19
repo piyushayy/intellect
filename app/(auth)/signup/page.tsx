@@ -58,8 +58,11 @@ export default function SignupPage() {
         }
 
         // Success - Redirect
+        const params = new URLSearchParams(window.location.search);
+        const nextUrl = params.get('next') || '/dashboard';
+
         router.refresh()
-        router.push('/dashboard')
+        router.push(nextUrl)
     }
 
     return (
