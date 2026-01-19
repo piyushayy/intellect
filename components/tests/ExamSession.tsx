@@ -72,33 +72,77 @@ export function ExamSession({ test, questions }: ExamSessionProps) {
     const currentQ = questions[currentIdx];
     const options = typeof currentQ.options === 'string' ? JSON.parse(currentQ.options) : currentQ.options;
 
+    // Calculate Sanity Check Metrics
+    const getSanityReport = (res: any) => {
+        const timeTaken = (test.duration_minutes * 60) - timeLeft;
+        const avgTimePerQ = timeTaken / (res.total || 1); // Avoid division by zero
+
+        let feedback = "";
+        let pace = "";
+
+        // Pace Analysis
+        if (avgTimePerQ < 30) {
+            pace = "Fast";
+            feedback += "You're moving very quickly. ";
+        } else if (avgTimePerQ > 120) {
+            pace = "Slow";
+            feedback += "You're taking your time. ";
+        } else {
+            pace = "Balanced";
+        }
+
+        // Accuracy Analysis
+        const accuracy = res.percentage || 0;
+        if (accuracy > 85) feedback += "Your accuracy is outstanding! Keep it up.";
+        else if (accuracy > 60) feedback += "Good accuracy, but room for refinement.";
+        else feedback += "Focus on accuracy before speed.";
+
+        return { timeTaken, pace, feedback, accuracy };
+    };
+
     if (result) {
+        const report = getSanityReport(result);
+        const formatDuration = (s: number) => `${Math.floor(s / 60)}m ${s % 60}s`;
+
         return (
             <div className="min-h-[80vh] flex items-center justify-center bg-slate-50 p-4">
-                <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 text-center max-w-lg w-full animate-in zoom-in-95">
-                    <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span className="text-4xl">🏆</span>
-                    </div>
-                    <h1 className="text-3xl font-bold text-slate-900 mb-2">Test Completed!</h1>
-                    <p className="text-slate-500 mb-8">Great job finishing the exam.</p>
+                <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 max-w-2xl w-full animate-in zoom-in-95">
 
-                    <div className="grid grid-cols-2 gap-4 mb-8">
-                        <div className="bg-slate-50 p-4 rounded-2xl">
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Score</p>
-                            <p className="text-3xl font-bold text-indigo-600">{result.score}/{result.total}</p>
+                    <div className="text-center mb-12">
+                        <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <CheckCircle className="w-10 h-10 text-emerald-600" />
                         </div>
-                        <div className="bg-slate-50 p-4 rounded-2xl">
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">XP Earned</p>
-                            <p className="text-3xl font-bold text-amber-500">+{result.xpEarned}</p>
+                        <h1 className="text-3xl font-bold text-slate-900 mb-2">Sanity Check Report</h1>
+                        <p className="text-slate-500">{report.feedback}</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                        <div className="bg-slate-50 p-4 rounded-2xl text-center">
+                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Score</p>
+                            <p className="text-2xl font-bold text-indigo-600">{result.score}/{result.total}</p>
+                        </div>
+                        <div className="bg-slate-50 p-4 rounded-2xl text-center">
+                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Accuracy</p>
+                            <p className={`text-2xl font-bold ${report.accuracy > 70 ? 'text-emerald-600' : 'text-amber-500'}`}>
+                                {report.accuracy}%
+                            </p>
+                        </div>
+                        <div className="bg-slate-50 p-4 rounded-2xl text-center">
+                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Time Taken</p>
+                            <p className="text-2xl font-bold text-slate-700">{formatDuration(report.timeTaken)}</p>
+                        </div>
+                        <div className="bg-slate-50 p-4 rounded-2xl text-center">
+                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Pace</p>
+                            <p className="text-2xl font-bold text-slate-700">{report.pace}</p>
                         </div>
                     </div>
 
                     <div className="flex gap-4">
-                        <Button className="w-full" onClick={() => router.push('/dashboard')}>
-                            Dashboard
+                        <Button className="w-full h-12 text-base" onClick={() => router.push('/dashboard')}>
+                            Return to Dashboard
                         </Button>
-                        <Button variant="outline" className="w-full" onClick={() => router.push('/tests')}>
-                            Take Another
+                        <Button variant="outline" className="w-full h-12 text-base" onClick={() => router.push('/mistakes')}>
+                            Review Mistakes
                         </Button>
                     </div>
                 </div>
