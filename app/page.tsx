@@ -14,11 +14,16 @@ export default function Home() {
 
         {/* HERO SECTION */}
         <HeroSection
-          title={<>Practice smarter. <br /><span className="italic text-indigo-600 font-light">Reach a better college.</span></>}
-          animatedTexts={["Accountancy", "Economics", "Business Studies", "Applied Math"]}
-          subtitle="Master concepts in Commerce and Humanities with interactive problem solving. Built for the ambitious CUET aspirant."
+          title={<>Practice smarter. <br /></>}
+          animatedTexts={[
+            "Reach a better college.",
+            "Crack CUET with top ranks.",
+            "Master your dream subjects.",
+            "Achieve your potential."
+          ]}
+          subtitle="The intelligent learning ecosystem for ambitious Commerce & Humanities students."
           infoBadgeText="Trusted by 10,000+ Students"
-          ctaButtonText="Get Started"
+          ctaButtonText="Start Learning Free"
           socialProofText="Join over 10k+ learners"
           avatars={[
             { src: "https://randomuser.me/api/portraits/women/44.jpg", alt: "User 1", fallback: "U1" },
