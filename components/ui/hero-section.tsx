@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { cn } from "@/lib/utils"; // Assuming you have a `cn` utility from shadcn/ui
 import { Button } from "@/components/ui/Button"; // Using shadcn/ui Button
