@@ -32,8 +32,9 @@ export function Navbar() {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
             setUser(session?.user || null);
             if (session?.user) {
+                // Fetch profile only if not already determined or session changed
                 const { data: profile } = await supabase.from('users').select('role').eq('id', session.user.id).single();
-                setIsAdmin(profile?.role === 'admin');
+                setIsAdmin(profile?.role === 'admin' || profile?.role === 'moderator');
             } else {
                 setIsAdmin(false);
             }
