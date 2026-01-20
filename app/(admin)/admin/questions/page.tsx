@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase-server";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { Upload, Search, Edit } from "lucide-react";
+import { Upload, Search, Edit, Plus } from "lucide-react";
 
 import { DeleteQuestionButton } from "@/components/admin/QuestionActions";
 
@@ -22,11 +22,18 @@ export default async function AdminQuestionsPage() {
         <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-8">
                 <h1 className="text-2xl font-bold text-slate-900">Question Bank</h1>
-                <Link href="/admin/upload">
-                    <Button>
-                        <Upload className="w-4 h-4 mr-2" /> Import Questions
-                    </Button>
-                </Link>
+                <div className="flex gap-4">
+                    <Link href="/admin/questions/new">
+                        <Button variant="outline">
+                            <Plus className="w-4 h-4 mr-2" /> Single Add
+                        </Button>
+                    </Link>
+                    <Link href="/admin/upload">
+                        <Button>
+                            <Upload className="w-4 h-4 mr-2" /> Bulk Import
+                        </Button>
+                    </Link>
+                </div>
             </div>
 
             <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">

@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/Button"; // standard import
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { LogoutButton } from "@/components/auth/LogoutButton";
 
@@ -29,15 +29,19 @@ export default async function AdminLayout({
         redirect("/login");
     }
 
-    // Check role in DB
-    const { data: profile } = await supabase
-        .from('users')
-        .select('role')
-        .eq('id', user.id)
-        .single();
+    // Check role in metadata first (faster) then DB
+    const metadataRole = user.user_metadata?.role;
 
-    if (profile?.role !== 'admin') {
-        redirect("/dashboard"); // or /404 to hide existence
+    if (metadataRole !== 'admin' && metadataRole !== 'moderator') {
+        const { data: profile } = await supabase
+            .from('users')
+            .select('role')
+            .eq('id', user.id)
+            .single();
+
+        if (profile?.role !== 'admin' && profile?.role !== 'moderator') {
+            redirect("/dashboard");
+        }
     }
 
     return (

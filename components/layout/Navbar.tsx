@@ -14,27 +14,39 @@ export function Navbar() {
     useEffect(() => {
         // Check active session
         supabase.auth.getUser().then(async ({ data }) => {
-            setUser(data.user);
-            if (data.user) {
-                // Check if admin
-                const { data: profile } = await supabase
-                    .from('users')
-                    .select('role')
-                    .eq('id', data.user.id)
-                    .single();
-                if (profile?.role === 'admin') {
+            const currentUser = data.user;
+            setUser(currentUser);
+            if (currentUser) {
+                // Check metadata first
+                const metaRole = currentUser.user_metadata?.role;
+                if (metaRole === 'admin' || metaRole === 'moderator') {
                     setIsAdmin(true);
+                } else {
+                    // Check DB
+                    const { data: profile } = await supabase
+                        .from('users')
+                        .select('role')
+                        .eq('id', currentUser.id)
+                        .single();
+                    if (profile?.role === 'admin' || profile?.role === 'moderator') {
+                        setIsAdmin(true);
+                    }
                 }
             }
         });
 
         // Listen for changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            setUser(session?.user || null);
-            if (session?.user) {
-                // Fetch profile only if not already determined or session changed
-                const { data: profile } = await supabase.from('users').select('role').eq('id', session.user.id).single();
-                setIsAdmin(profile?.role === 'admin' || profile?.role === 'moderator');
+            const currentUser = session?.user || null;
+            setUser(currentUser);
+            if (currentUser) {
+                const metaRole = currentUser.user_metadata?.role;
+                if (metaRole === 'admin' || metaRole === 'moderator') {
+                    setIsAdmin(true);
+                } else {
+                    const { data: profile } = await supabase.from('users').select('role').eq('id', currentUser.id).single();
+                    setIsAdmin(profile?.role === 'admin' || profile?.role === 'moderator');
+                }
             } else {
                 setIsAdmin(false);
             }

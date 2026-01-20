@@ -2,6 +2,7 @@ import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { Plus, FileText, ChevronRight } from "lucide-react";
+import { DeleteTestButton } from "@/components/admin/DeleteTestButton";
 
 async function getTests() {
     const { data } = await supabase
@@ -48,6 +49,7 @@ export default async function AdminTestsPage() {
                                     <div className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold uppercase rounded-full">
                                         Active
                                     </div>
+                                    <DeleteTestButton id={test.id} />
                                     <Link href={`/admin/tests/${test.id}`}>
                                         <Button variant="outline" size="sm">
                                             Manage Content <ChevronRight className="ml-2 w-4 h-4" />
