@@ -120,34 +120,31 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
                     </p>
                 </div>
 
-                <div className="mt-10 flex flex-col items-center gap-6">
-                    {/* Info Badge */}
-                    <div className="inline-flex items-center rounded-full bg-indigo-50 text-indigo-700 px-4 py-1.5 text-sm font-medium border border-indigo-100">
-                        {infoBadgeText}
-                    </div>
-
-                    {/* CTA Button */}
+                <div className="mt-12 flex flex-col items-center gap-8 relative z-10">
+                    {/* Futuristic CTA Button */}
                     <Link href="/signup">
-                        <Button size="lg" className="px-10 py-6 text-lg rounded-full shadow-xl shadow-indigo-200">
-                            {ctaButtonText}
-                        </Button>
+                        <div className="relative group">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur opacity-70 group-hover:opacity-100 transition duration-200 animate-tilt"></div>
+                            <Button size="lg" className="relative px-12 py-7 text-xl rounded-full bg-slate-900 text-white border border-slate-800 hover:bg-black transition-all">
+                                {ctaButtonText}
+                                <span className="ml-2">→</span>
+                            </Button>
+                        </div>
                     </Link>
 
-                    {/* Social Proof */}
-                    <div className="mt-4 flex items-center justify-center">
-                        <div className="flex -space-x-4">
-                            {avatars.map((avatar, index) => (
-                                <Avatar key={index} className="border-2 border-white w-10 h-10">
-                                    <AvatarImage src={avatar.src} alt={avatar.alt} />
-                                    <AvatarFallback>{avatar.fallback}</AvatarFallback>
-                                </Avatar>
-                            ))}
-                        </div>
-                        <p className="ml-4 text-sm font-medium text-slate-500">
-                            {socialProofText}
-                        </p>
+                    {/* Minimal Social Proof (No Faces) */}
+                    <div className="flex items-center gap-2 text-slate-500 text-sm font-medium bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-100">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        {socialProofText}
                     </div>
                 </div>
+
+                {/* Futurist Background Glows */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px] -z-10 pointer-events-none mix-blend-multiply animate-pulse-slow"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-[80px] -z-10 pointer-events-none mix-blend-multiply delay-75"></div>
             </section>
         );
     }
