@@ -45,6 +45,13 @@ export default async function DashboardPage() {
                             </h1>
                             <p className="text-slate-600">Here is your progress so far.</p>
                         </div>
+                        {user.user_metadata?.role === 'admin' && (
+                            <Link href="/admin">
+                                <Button className="bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-indigo-200/50">
+                                    Go to Admin Panel ->
+                                </Button>
+                            </Link>
+                        )}
                     </header>
                 </Reveal>
 
