@@ -45,8 +45,27 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(redirectUrl);
     }
 
-    // 2. Auth Page Redirect (If already logged in)
+    // 2. Admin Routes Guard
+    if (request.nextUrl.pathname.startsWith('/admin')) {
+        if (!user) {
+            return NextResponse.redirect(new URL('/login', request.url));
+        }
+
+        // Optional: Check role claim if available in session or metadata
+        // For strict RBAC, checking metadata here is good practice, though user object is already fetched
+        const role = user.user_metadata?.role;
+        if (role !== 'admin' && role !== 'moderator') {
+            // Unauthorized users trying to access admin get kicked to dashboard
+            return NextResponse.redirect(new URL('/dashboard', request.url));
+        }
+    }
+
+    // 3. Auth Page Redirect (If already logged in)
     if ((request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/signup') && user) {
+        // Smart redirect based on role
+        if (user.user_metadata?.role === 'admin') {
+            return NextResponse.redirect(new URL('/admin', request.url));
+        }
         return NextResponse.redirect(new URL('/dashboard', request.url));
     }
 

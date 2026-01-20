@@ -29,7 +29,7 @@ export default function LoginPage() {
         const params = new URLSearchParams(window.location.search);
         const nextUrl = params.get('next') || '/dashboard';
 
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data: { user }, error } = await supabase.auth.signInWithPassword({
             email,
             password,
         })
@@ -38,8 +38,16 @@ export default function LoginPage() {
             setError(error.message)
             setLoading(false)
         } else {
-            router.refresh()
-            router.push(nextUrl)
+            // Check Role logic to redirect specifically for admins
+            if (user?.user_metadata?.role === 'admin' || user?.user_metadata?.role === 'moderator') {
+                // Admin Redirect (ignores ?next unless explicitly desired)
+                router.refresh()
+                router.push('/admin')
+            } else {
+                // Student Redirect
+                router.refresh()
+                router.push(nextUrl)
+            }
         }
     }
 
