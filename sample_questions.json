@@ -1,0 +1,279 @@
+[
+    {
+        "question_text": "Which of the following is NOT a feature of a Partnership?",
+        "subject": "accountancy",
+        "topic": "partnership",
+        "difficulty": "easy",
+        "correct_option": "c",
+        "options": [
+            {
+                "id": "a",
+                "text": "Two or more persons"
+            },
+            {
+                "id": "b",
+                "text": "Agreement"
+            },
+            {
+                "id": "c",
+                "text": "Limited Liability"
+            },
+            {
+                "id": "d",
+                "text": "Sharing of Profits"
+            }
+        ],
+        "explanation": "In a general partnership, partners have unlimited liability. Limited liability is a feature of an LLP or Company.",
+        "is_pyq": true,
+        "pyq_year": 2023
+    },
+    {
+        "question_text": "Goodwill is an ____________ asset.",
+        "subject": "accountancy",
+        "topic": "partnership",
+        "difficulty": "medium",
+        "correct_option": "b",
+        "options": [
+            {
+                "id": "a",
+                "text": "Tangible"
+            },
+            {
+                "id": "b",
+                "text": "Intangible"
+            },
+            {
+                "id": "c",
+                "text": "Fictitious"
+            },
+            {
+                "id": "d",
+                "text": "Current"
+            }
+        ],
+        "explanation": "Goodwill is an intangible asset as it cannot be seen or touched but has value.",
+        "is_pyq": false
+    },
+    {
+        "question_text": "Receipts and Payments Account is a summary of:",
+        "subject": "accountancy",
+        "topic": "npo",
+        "difficulty": "medium",
+        "correct_option": "a",
+        "options": [
+            {
+                "id": "a",
+                "text": "Cash Book"
+            },
+            {
+                "id": "b",
+                "text": "Journal"
+            },
+            {
+                "id": "c",
+                "text": "Ledger"
+            },
+            {
+                "id": "d",
+                "text": "Balance Sheet"
+            }
+        ],
+        "explanation": "Receipts and Payments Account is simply a summary of valid cash transactions.",
+        "is_pyq": true,
+        "pyq_year": 2022
+    },
+    {
+        "question_text": "Which management principle states 'One Head One Plan'?",
+        "subject": "business-studies",
+        "topic": "management-principles",
+        "difficulty": "easy",
+        "correct_option": "b",
+        "options": [
+            {
+                "id": "a",
+                "text": "Unity of Command"
+            },
+            {
+                "id": "b",
+                "text": "Unity of Direction"
+            },
+            {
+                "id": "c",
+                "text": "Division of Work"
+            },
+            {
+                "id": "d",
+                "text": "Discipline"
+            }
+        ],
+        "explanation": "Unity of Direction implies that there should be one head and one plan for a group of activities having the same objective.",
+        "is_pyq": true,
+        "pyq_year": 2023
+    },
+    {
+        "question_text": "Liberlisation means:",
+        "subject": "business-studies",
+        "topic": "business-environment",
+        "difficulty": "medium",
+        "correct_option": "a",
+        "options": [
+            {
+                "id": "a",
+                "text": "Removing unnecessary controls and restrictions"
+            },
+            {
+                "id": "b",
+                "text": "Integration among economies"
+            },
+            {
+                "id": "c",
+                "text": "Reduced government ownership"
+            },
+            {
+                "id": "d",
+                "text": "None of the above"
+            }
+        ],
+        "explanation": "Liberalisation refers to the end of the license, quota, and many more restrictions and controls which were put on industries.",
+        "is_pyq": false
+    },
+    {
+        "question_text": "Who is known as the 'Father of Economics'?",
+        "subject": "economics",
+        "topic": "microeconomics",
+        "difficulty": "easy",
+        "correct_option": "a",
+        "options": [
+            {
+                "id": "a",
+                "text": "Adam Smith"
+            },
+            {
+                "id": "b",
+                "text": "Alfred Marshall"
+            },
+            {
+                "id": "c",
+                "text": "J.M. Keynes"
+            },
+            {
+                "id": "d",
+                "text": "Raghuram Rajan"
+            }
+        ],
+        "explanation": "Adam Smith is famously known as the Father of Economics for his work 'The Wealth of Nations'.",
+        "is_pyq": true,
+        "pyq_year": 2021
+    },
+    {
+        "question_text": "The problem of 'Choice' arises due to:",
+        "subject": "economics",
+        "topic": "microeconomics",
+        "difficulty": "medium",
+        "correct_option": "d",
+        "options": [
+            {
+                "id": "a",
+                "text": "Unlimited Wants"
+            },
+            {
+                "id": "b",
+                "text": "Limited Resources"
+            },
+            {
+                "id": "c",
+                "text": "Alternative Uses"
+            },
+            {
+                "id": "d",
+                "text": "All of the above"
+            }
+        ],
+        "explanation": "Scarcity of resources, unlimited wants, and alternative uses of resources together cause the economic problem of choice.",
+        "is_pyq": false
+    },
+    {
+        "question_text": "When was the Planning Commission set up in India?",
+        "subject": "economics",
+        "topic": "indian-economy",
+        "difficulty": "hard",
+        "correct_option": "b",
+        "options": [
+            {
+                "id": "a",
+                "text": "1947"
+            },
+            {
+                "id": "b",
+                "text": "1950"
+            },
+            {
+                "id": "c",
+                "text": "1951"
+            },
+            {
+                "id": "d",
+                "text": "1991"
+            }
+        ],
+        "explanation": "The Planning Commission was set up in 1950 to oversee the economic development of India through Five-Year Plans.",
+        "is_pyq": true,
+        "pyq_year": 2020
+    },
+    {
+        "question_text": "Cold War was a competition between:",
+        "subject": "political-science",
+        "topic": "cold-war",
+        "difficulty": "easy",
+        "correct_option": "a",
+        "options": [
+            {
+                "id": "a",
+                "text": "USA and USSR"
+            },
+            {
+                "id": "b",
+                "text": "USA and China"
+            },
+            {
+                "id": "c",
+                "text": "USSR and UK"
+            },
+            {
+                "id": "d",
+                "text": "India and Pakistan"
+            }
+        ],
+        "explanation": "The Cold War was a geopolitical tension between the United States and the Soviet Union and their respective allies.",
+        "is_pyq": true,
+        "pyq_year": 2022
+    },
+    {
+        "question_text": "The Harappan Civilisation declined around:",
+        "subject": "history",
+        "topic": "ancient-india",
+        "difficulty": "medium",
+        "correct_option": "b",
+        "options": [
+            {
+                "id": "a",
+                "text": "2500 BCE"
+            },
+            {
+                "id": "b",
+                "text": "1800 BCE"
+            },
+            {
+                "id": "c",
+                "text": "1000 BCE"
+            },
+            {
+                "id": "d",
+                "text": "500 BCE"
+            }
+        ],
+        "explanation": "Most sites of the Mature Harappan culture were abandoned by c. 1800 BCE.",
+        "is_pyq": true,
+        "pyq_year": 2023
+    }
+]
