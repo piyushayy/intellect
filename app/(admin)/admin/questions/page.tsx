@@ -1,9 +1,10 @@
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase-server";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { Plus, Search, Edit } from "lucide-react";
+import { Upload, Search, Edit } from "lucide-react";
 
 async function getQuestions() {
+    const supabase = await createClient();
     const { data } = await supabase
         .from('questions')
         .select('*, subjects(name), topics(name)')
@@ -19,9 +20,9 @@ export default async function AdminQuestionsPage() {
         <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-8">
                 <h1 className="text-2xl font-bold text-slate-900">Question Bank</h1>
-                <Link href="/admin/questions/new">
+                <Link href="/admin/upload">
                     <Button>
-                        <Plus className="w-4 h-4 mr-2" /> Add Question
+                        <Upload className="w-4 h-4 mr-2" /> Import Questions
                     </Button>
                 </Link>
             </div>
