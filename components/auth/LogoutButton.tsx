@@ -20,9 +20,8 @@ export function LogoutButton({ className, variant = "ghost", showIcon = true, te
     const handleLogout = async () => {
         setLoading(true);
         await supabase.auth.signOut();
-        router.push("/login"); // or /
-        router.refresh();
-        setLoading(false);
+        // Force full reload to clear any cached admin/student data state
+        window.location.href = "/login";
     };
 
     return (
