@@ -23,7 +23,7 @@ export default function Home() {
           </h1>
 
           <p className="text-xl text-slate-600 max-w-2xl mb-10 leading-relaxed font-medium">
-            Master concepts in Math, Science, and English with interactive problem solving.
+            Master concepts in Accountancy, Economics, and B-Studies with interactive problem solving.
             Built for the ambitious CUET aspirant.
           </p>
 

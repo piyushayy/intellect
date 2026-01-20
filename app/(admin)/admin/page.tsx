@@ -14,13 +14,8 @@ export default async function AdminDashboard() {
                 <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
                 <div className="flex gap-4">
                     <Link href="/admin/upload">
-                        <Button variant="outline">
-                            <Upload className="mr-2 w-4 h-4" /> Bulk Import
-                        </Button>
-                    </Link>
-                    <Link href="/admin/questions/new">
-                        <Button>
-                            <Plus className="mr-2 w-4 h-4" /> Add Question
+                        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+                            <Upload className="mr-2 w-4 h-4" /> Import Questions (JSON)
                         </Button>
                     </Link>
                 </div>

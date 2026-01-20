@@ -1,6 +1,6 @@
 'use server'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase-server'
 import { revalidatePath } from 'next/cache'
 
 export async function createQuestion(formData: FormData) {
@@ -18,6 +18,8 @@ export async function createQuestion(formData: FormData) {
         { id: 'c', text: formData.get('option_c') as string },
         { id: 'd', text: formData.get('option_d') as string },
     ]
+
+    const supabase = await createClient()
 
     const { error } = await supabase.from('questions').insert({
         subject_id,
@@ -44,6 +46,8 @@ export async function createMockTest(formData: FormData) {
     const duration = parseInt(formData.get('duration') as string)
     const subject_id = formData.get('subject_id') as string || null
 
+    const supabase = await createClient()
+
     const { data, error } = await supabase.from('mock_tests').insert({
         title,
         duration_minutes: duration,
@@ -65,6 +69,8 @@ export async function addQuestionsToTest(testId: string, questionIds: string[]) 
         question_id: qid
     }))
 
+    const supabase = await createClient()
+
     const { error } = await supabase.from('mock_test_questions').insert(insertData)
 
     if (error) {
@@ -76,6 +82,8 @@ export async function addQuestionsToTest(testId: string, questionIds: string[]) 
 }
 
 export async function bulkImportQuestions(questions: any[]) {
+    const supabase = await createClient()
+
     // 1. Fetch all subjects and topics for mapping
     const { data: subjects } = await supabase.from('subjects').select('id, slug');
     const { data: topics } = await supabase.from('topics').select('id, slug, subject_id');
@@ -136,6 +144,8 @@ export async function bulkImportQuestions(questions: any[]) {
 }
 
 export async function getAdminStats() {
+    const supabase = await createClient()
+
     const { count: questionCount } = await supabase.from('questions').select('*', { count: 'exact', head: true });
     const { count: userCount } = await supabase.from('users').select('*', { count: 'exact', head: true });
     const { count: attemptCount } = await supabase.from('test_attempts').select('*', { count: 'exact', head: true });

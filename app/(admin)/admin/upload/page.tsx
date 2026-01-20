@@ -143,18 +143,18 @@ export default function BulkUploadPage() {
                 <div className="bg-slate-900 text-slate-300 p-6 rounded-xl font-mono text-sm overflow-x-auto">
                     <pre>{`[
   {
-    "question_text": "What is the unit of Force?",
-    "subject": "physics",
-    "topic": "mechanics", 
-    "difficulty": "easy",
-    "correct_option": "b",
+    "question_text": "Which of these is NOT a feature of a Partnership?",
+    "subject": "accountancy",
+    "topic": "partnership", 
+    "difficulty": "medium",
+    "correct_option": "c",
     "options": [
-      { "id": "a", "text": "Joule" },
-      { "id": "b", "text": "Newton" },
-      { "id": "c", "text": "Watt" },
-      { "id": "d", "text": "Pascal" }
+      { "id": "a", "text": "Two or more persons" },
+      { "id": "b", "text": "Agreement" },
+      { "id": "c", "text": "Limited Liability" },
+      { "id": "d", "text": "Sharing of Profits" }
     ],
-    "explanation": "Newton is the SI unit of force.",
+    "explanation": "Partners generally have unlimited liability, unlike a company.",
     "is_pyq": true,
     "pyq_year": 2023
   }
