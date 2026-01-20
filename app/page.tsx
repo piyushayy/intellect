@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Zap, Brain, Target, Star, Users } from "lucide-react";
 import Image from "next/image";
+import { HeroSection } from "@/components/ui/hero-section";
 
 export default function Home() {
   return (
@@ -12,39 +13,20 @@ export default function Home() {
       <main className="flex-1 flex flex-col relative overflow-hidden">
 
         {/* HERO SECTION */}
-        <section className="relative pt-20 pb-32 px-4 flex flex-col items-center text-center max-w-7xl mx-auto">
-          {/* Abstract floating shapes resembling the reference */}
-          <div className="absolute top-20 left-10 w-24 h-24 bg-yellow-100 rounded-full blur-xl opacity-60 animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-32 h-32 bg-green-100 rounded-full blur-xl opacity-60 animate-pulse delay-700" />
-
-          <h1 className="font-serif text-5xl md:text-7xl tracking-tight text-slate-900 mb-8 max-w-4xl leading-tight">
-            Practice smarter. <br />
-            <span className="italic text-indigo-600 font-light">Reach a better college.</span>
-          </h1>
-
-          <p className="text-xl text-slate-600 max-w-2xl mb-10 leading-relaxed font-medium">
-            Master concepts in Accountancy, Economics, and B-Studies with interactive problem solving.
-            Built for the ambitious CUET aspirant.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link href="/signup">
-              <Button size="lg" className="h-14 px-10 rounded-full text-lg font-bold bg-slate-900 text-white hover:bg-slate-800 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1">
-                Get Started
-              </Button>
-            </Link>
-          </div>
-
-          {/* Trusted By Strip */}
-          <div className="mt-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-            <p className="text-xs font-bold tracking-widest uppercase text-slate-400 mb-6">Join over 10,000+ Learners</p>
-            <div className="flex gap-8 items-center justify-center flex-wrap">
-              {['Times of India', 'The Hindu', 'Careers360', 'Josh Talks'].map(brand => (
-                <span key={brand} className="text-xl font-bold text-slate-300">{brand}</span>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HeroSection
+          title={<>Practice smarter. <br /><span className="italic text-indigo-600 font-light">Reach a better college.</span></>}
+          animatedTexts={["Accountancy", "Economics", "Business Studies", "Applied Math"]}
+          subtitle="Master concepts in Commerce and Humanities with interactive problem solving. Built for the ambitious CUET aspirant."
+          infoBadgeText="Trusted by 10,000+ Students"
+          ctaButtonText="Get Started"
+          socialProofText="Join over 10k+ learners"
+          avatars={[
+            { src: "https://randomuser.me/api/portraits/women/44.jpg", alt: "User 1", fallback: "U1" },
+            { src: "https://randomuser.me/api/portraits/men/32.jpg", alt: "User 2", fallback: "U2" },
+            { src: "https://randomuser.me/api/portraits/women/68.jpg", alt: "User 3", fallback: "U3" },
+            { src: "https://randomuser.me/api/portraits/men/45.jpg", alt: "User 4", fallback: "U4" },
+          ]}
+        />
 
         {/* WHAT IS THIS? */}
         <section className="py-24 bg-white">
