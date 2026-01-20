@@ -47,8 +47,8 @@ export default async function DashboardPage() {
                         </div>
                         {user.user_metadata?.role === 'admin' && (
                             <Link href="/admin">
-                                <Button className="bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-indigo-200/50">
-                                    Go to Admin Panel ->
+                                <Button className="bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-indigo-200/50 flex items-center gap-2">
+                                    Go to Admin Panel <ArrowRight className="w-4 h-4" />
                                 </Button>
                             </Link>
                         )}

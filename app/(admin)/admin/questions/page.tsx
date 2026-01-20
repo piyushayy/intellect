@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { Upload, Search, Edit } from "lucide-react";
 
+import { DeleteQuestionButton } from "@/components/admin/QuestionActions";
+
 async function getQuestions() {
     const supabase = await createClient();
     const { data } = await supabase
@@ -49,9 +51,7 @@ export default async function AdminQuestionsPage() {
                                     </span>
                                     <h3 className="font-medium text-slate-900 line-clamp-2">{q.question_text}</h3>
                                 </div>
-                                <Button variant="ghost" size="icon" className="text-slate-400 hover:text-indigo-600">
-                                    <Edit className="w-4 h-4" />
-                                </Button>
+                                <DeleteQuestionButton id={q.id} />
                             </div>
                             <div className="flex items-center gap-3 text-sm text-slate-500">
                                 <span className={`px-2 py-0.5 rounded text-xs font-bold uppercase

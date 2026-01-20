@@ -170,3 +170,15 @@ export async function getAdminStats() {
         recentQuestions: recentQuestions || []
     };
 }
+
+export async function deleteQuestion(questionId: string) {
+    const supabase = await createClient()
+    const { error } = await supabase.from('questions').delete().eq('id', questionId)
+
+    if (error) {
+        return { success: false, error: error.message }
+    }
+
+    revalidatePath('/admin/questions')
+    return { success: true }
+}
