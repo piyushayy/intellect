@@ -107,9 +107,9 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
                                 <span className="absolute inset-0 border-2 border-dashed border-indigo-200 rounded-2xl transform rotate-1"></span>
                             </span>
                             {/* Animated Text */}
-                            <span className="text-indigo-600 min-h-[1.2em] inline-block">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600 min-h-[1.2em] inline-block font-extrabold tracking-tight">
                                 {displayText}
-                                <span className="animate-pulse">|</span>
+                                <span className="animate-pulse text-indigo-600">|</span>
                             </span>
                         </span>
                     </h1>
